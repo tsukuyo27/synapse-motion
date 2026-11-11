@@ -1,0 +1,34 @@
+{
+  "name": "synapse-motion",
+  "version": "1.0.0",
+  "description": "Zero-dependency, pure React + Tailwind CSS fluid motion design system inspired by biological synapses.",
+  "type": "module",
+  "main": "src/index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tsukuyo27/synapse-motion.git"
+  },
+  "keywords": [
+    "react",
+    "tailwindcss",
+    "motion",
+    "animation",
+    "transitions",
+    "shadcn",
+    "zero-dependency",
+    "flicker-free",
+    "skeleton",
+    "stagger"
+  ],
+  "author": "tsukuyo27",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tsukuyo27/synapse-motion/issues"
+  },
+  "homepage": "https://github.com/tsukuyo27/synapse-motion#readme",
+  "peerDependencies": {
+    "react": ">=18.0.0",
+    "react-dom": ">=18.0.0",
+    "tailwindcss": ">=3.3.0"
+  }
+}
