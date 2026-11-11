@@ -17,3 +17,4 @@ export function KpiSkeleton({ className = '' }) {
 }
 
 export default KpiSkeleton;
+

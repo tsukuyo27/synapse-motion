@@ -28,3 +28,4 @@ export function TableSkeleton({ rows = 5, className = '' }) {
 }
 
 export default TableSkeleton;
+

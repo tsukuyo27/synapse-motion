@@ -36,3 +36,4 @@ export function useTimedNavigate(navigateFn, dissolveDurationMs = 200, safetyBuf
 }
 
 export default useTimedNavigate;
+

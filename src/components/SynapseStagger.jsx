@@ -36,3 +36,4 @@ export function SynapseStagger({
 }
 
 export default SynapseStagger;
+

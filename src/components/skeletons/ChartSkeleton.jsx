@@ -24,3 +24,4 @@ export function ChartSkeleton({ className = '' }) {
 }
 
 export default ChartSkeleton;
+

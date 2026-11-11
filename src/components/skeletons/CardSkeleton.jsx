@@ -24,3 +24,4 @@ export function CardSkeleton({ className = '' }) {
 }
 
 export default CardSkeleton;
+

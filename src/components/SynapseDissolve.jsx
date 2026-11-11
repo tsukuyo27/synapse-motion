@@ -26,3 +26,4 @@ export function SynapseDissolve({
 }
 
 export default SynapseDissolve;
+

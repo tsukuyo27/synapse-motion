@@ -15,3 +15,4 @@ export { CardSkeleton, default as CardSkeletonDefault } from './components/skele
 
 // Tailwind Preset
 export { default as synapsePreset } from './config/tailwind.synapse-preset.js';
+

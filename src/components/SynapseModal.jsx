@@ -78,3 +78,4 @@ export function SynapseModal({
 }
 
 export default SynapseModal;
+

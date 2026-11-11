@@ -77,6 +77,9 @@ export default {
 
 ## 💡 Usage Examples
 
+> [!TIP]
+> **Import Path**: Examples below use the standard `@/components/ui/motion` alias. If your project doesn't have path aliases configured, simply use relative paths, e.g. `import { ... } from './src/components/ui/motion';`.
+
 ### 1. Staggered Cascade Lists (`SynapseStagger`)
 Create domino-style waterfall card entrances with sequential dynamic delays:
 
@@ -183,7 +186,34 @@ export function LoginCard() {
 
 ---
 
-### 5. 1:1 Modular Atomic Skeletons
+### 5. Fluid Views & Tab Soft-Rise (`SynapseDissolve`)
+Switch between tabs or views smoothly with vertical soft-rise and zero snap-cuts:
+
+```jsx
+import { useState } from 'react';
+import { SynapseDissolve } from '@/components/ui/motion';
+
+export function TabbedInterface() {
+  const [activeTab, setActiveTab] = useState('overview');
+
+  return (
+    <div>
+      <div className="flex gap-2 mb-4">
+        <button onClick={() => setActiveTab('overview')}>Overview</button>
+        <button onClick={() => setActiveTab('analytics')}>Analytics</button>
+      </div>
+
+      <SynapseDissolve activeKey={activeTab}>
+        {activeTab === 'overview' ? <OverviewPanel /> : <AnalyticsPanel />}
+      </SynapseDissolve>
+    </div>
+  );
+}
+```
+
+---
+
+### 6. 1:1 Modular Atomic Skeletons
 Eliminate Cumulative Layout Shift (CLS) by matching live content geometry 1:1:
 
 ```jsx
