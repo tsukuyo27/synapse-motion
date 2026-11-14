@@ -22,6 +22,9 @@ export function useTimedNavigate(navigateFn, dissolveDurationMs = 200, safetyBuf
   }, []);
 
   const timedNavigate = useCallback((to, options) => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+    }
     setIsDissolving(true);
     const totalDelay = dissolveDurationMs + safetyBufferMs;
 

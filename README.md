@@ -1,43 +1,51 @@
 <div align="center">
 
-# ⚡ Synapse Motion Framework
+# ⚡ Synapse Motion Framework v2.2 (Clean Modular Architecture)
 
-**Fluid, zero-dependency motion design system for React and Tailwind CSS.**  
+**Hybrid fluid motion framework for React & Tailwind CSS — cleanly separated into `shadcn-synapse/` (0-KB CSS Engine), `motion-primitives/` (Framer Motion), and `presets/` (Verified Page Blueprints).**  
 *Inspired by the rapid, organic signal transmission of biological synapses.*
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+[![Version](https://img.shields.io/badge/Version-2.2.1-indigo.svg)](#)
 [![React](https://img.shields.io/badge/React-18%20%7C%2019-61dafb.svg)](https://react.dev/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-3.4%2B%20%7C%204.0%2B-38bdf8.svg)](https://tailwindcss.com/)
-[![Bundle Size](https://img.shields.io/badge/Runtime%20Dependency-0%20KB-success.svg)](#)
+[![Architecture](https://img.shields.io/badge/Folders-shadcn%20%2B%20motion--primitives%20%2B%20presets-emerald.svg)](#)
 [![Flicker-Free](https://img.shields.io/badge/Route%20Handoff-Zero--Flicker-emerald.svg)](#)
 
 </div>
 
 ---
 
-## 🌟 Why Synapse Motion?
+## 🌟 3-Layer Modular Architecture
 
-Modern web applications often suffer from **two extremes**:
-1. **Bloated Runtime Libraries**: Heavy animation libraries ($\sim 40\text{--}60$ KB gzipped) that add JavaScript parsing overhead, layout thrashing, and dependency version lockouts.
-2. **Naive CSS Transitions**: Choppy route transitions, flickering modals on unmount, jarring layout shifts (CLS), and snap-cut tab changes.
+Modern web applications suffer when trivial loading skeletons pull heavy JS springs OR when complex form choreography breaks under CSS-only hacks (autofill overlays, mobile horizontal overflow, layout snaps).
 
-**Synapse Motion Framework** bridges this gap using the **Shadcn UI model** (Copy-Paste Architecture). You own the code. It delivers enterprise-grade physics and zero-flicker transitions using **pure CSS keyframes hardware-acceleration + React timing orchestration with 0 KB runtime overhead**.
+**Synapse Motion v2.2** separates source code and configuration cleanly inside `src/`:
+
+1. **`src/shadcn-synapse/` (Zero-Dependency CSS + Shadcn Style)**  
+   Pure Tailwind preset, 1:1 geometry skeletons (`KpiSkeleton`, `ChartSkeleton`, `TableSkeleton`, `CardSkeleton`), dan timing/lock hooks (`usePresence`, `useTimedNavigate`, ref-counted `useBodyScrollLock`). **Zero Framer Motion dependency.**
+2. **`src/motion-primitives/` (`framer-motion` Choreography & Modals Tier)**  
+   Interactive physics, persistent portal modal (`SynapseModal` dengan desktop spring / `mobileSheet` / Layer-Aware `Escape` Guard), & composited primitives (`TextScramble`, `TransitionPanel`, `AnimatedGroup`, `Disclosure`, `TextMorph`, `AnimatedNumber`, `SynapseDissolve`, & table-safe `SynapseStagger`).
+3. **`src/presets/` + `pages/` (Verified Page Configuration Matrix)**  
+   Battle-tested page blueprints & exportable JS timing configs. **Only audited & tested page archetypes are listed here** — new pages are added incrementally via [`PRESET_AUTHORING_GUIDE.md`](./PRESET_AUTHORING_GUIDE.md).
 
 ---
 
-## 🏛️ The 6 Pillars of Synapse Motion
+## 📋 Verified Page Presets (Catat & Tambah Bertahap)
 
-```mermaid
-flowchart TD
-    subgraph Synapse["⚡ THE 6 PILLARS"]
-        P1["Pillar 1: Micro-Interactions & Form Physics<br/>• Error Shake (380ms)<br/>• Banner Accordion (280/220ms)<br/>• Tactile Press (active:scale-95)"]
-        P2["Pillar 2: Route Handoff & Timed Dissolve<br/>• Timed Dissolve Sync (+20ms Buffer)<br/>• GPU Blur Layer Retention"]
-        P3["Pillar 3: Seamless Shells & 1:1 Skeletons<br/>• Context-Aware Loading Shells<br/>• 1:1 Geometry Replicas (CLS = 0.00)<br/>• 200ms Dissolving Shimmer Overlay"]
-        P4["Pillar 4: Staggered Cascade Entrances<br/>• Waterfall Domino Roll-in<br/>• Dynamic Index Delay (i * 65ms)"]
-        P5["Pillar 5: Fluid Views & Optimistic State Exits<br/>• Vertical Soft-Rise (180ms)<br/>• Folder Micro-Dissolve (150ms)<br/>• Emerald In-Place Exit (180ms)"]
-        P6["Pillar 6: Universal Overlay & Modal Lifecycle<br/>• usePresence 0KB Unmount Engine<br/>• Backdrop Blur Fade<br/>• Dialog Spring Pop-in / Zoom-out"]
-    end
-```
+| Preset ID | Archetype | Folder Tiers Used | JS Token Export | Blueprint Doc |
+| :--- | :--- | :--- | :--- | :--- |
+| `01-login-auth` | Auth / Login 3-Panel Choreography (Boot + Form + Welcome + Dialog) | `shadcn-synapse` + `motion-primitives` | `loginAuthPreset` | [`pages/01-login-auth.md`](./pages/01-login-auth.md) |
+| `02-dashboard-kpi` | Dashboard KPI Bento, Tab Pill (`layoutId`), & Mobile ~360px Anti-Clip | `shadcn-synapse` + `motion-primitives` | `dashboardKpiPreset` | [`pages/02-dashboard-kpi.md`](./pages/02-dashboard-kpi.md) |
+| `03-master-data` | Reference Master Data CRUD Hub, Layered Modals, & Sub-Ribbon Baris-2 (`~360px`) | `shadcn-synapse` + `motion-primitives` | `masterDataPreset` | [`pages/03-master-data.md`](./pages/03-master-data.md) |
+| `04-pengiriman-operasional` | Reference Dispatch Ops: Persistent Modal Portal, Popover Spring, & Zero Frame-0 Reflow | `shadcn-synapse` + `motion-primitives` | `pengirimanOperasionalPreset` | [`pages/04-pengiriman-operasional.md`](./pages/04-pengiriman-operasional.md) |
+| `05-keuangan-tagihan` | Reference Finance Workspace: Billing Generator, Reconciliation, Archive & A4 Print Lightbox | `shadcn-synapse` + `motion-primitives` | `keuanganTagihanPreset` | [`pages/05-keuangan-tagihan.md`](./pages/05-keuangan-tagihan.md) |
+| `06-tracking-evendor` | Reference Tracking Workspace: ERP Status, Budget Burn-Down HUD, & Bank Clearing Audit | `shadcn-synapse` + `motion-primitives` | `trackingEvendorPreset` | [`pages/06-tracking-evendor.md`](./pages/06-tracking-evendor.md) |
+| `07-tata-kelola` | Reference Governance Suite: Multi-Workspace RBAC, SLA, Audit Logs, Archive, EWS & Config | `shadcn-synapse` + `motion-primitives` | `tataKelolaPreset` | [`pages/07-tata-kelola.md`](./pages/07-tata-kelola.md) |
+| `08-portal-amt` | Reference Field/Driver Portal (`~360px`): KPI Bento, Mobile Entry, & Document Lightbox | `shadcn-synapse` + `motion-primitives` | `portalAmtPreset` | [`pages/08-portal-amt.md`](./pages/08-portal-amt.md) |
+
+> [!NOTE]
+> Ingin menambahkan patokan untuk halaman baru (mis. Dashboard, Data Table, Tracking)? Ikuti template baku di [`PRESET_AUTHORING_GUIDE.md`](./PRESET_AUTHORING_GUIDE.md) setelah halaman tersebut selesai dievaluasi dan teruji.
 
 ---
 
@@ -46,10 +54,16 @@ flowchart TD
 Following the **Shadcn UI philosophy**, Synapse Motion is distributed via copy-paste scaffolding so Tailwind CSS can compile the utility classes directly within your project.
 
 ### Step 1: Copy Components to Your Project
-In your project terminal (React + Vite + Tailwind CSS), run a single command:
+In your project terminal (React + Vite + Tailwind CSS), run:
 
 ```bash
 npx degit tsukuyo27/synapse-motion/src src/components/ui/motion
+```
+
+*(Optional for Tier 2 Motion Primitives)* Install `framer-motion`:
+
+```bash
+npm install framer-motion
 ```
 
 ### Step 2: Register the Tailwind Preset
@@ -57,7 +71,7 @@ Add the Synapse preset into your `tailwind.config.js`:
 
 ```javascript
 // tailwind.config.js
-import synapsePreset from './src/components/ui/motion/config/tailwind.synapse-preset.js';
+import synapsePreset from './src/components/ui/motion/shadcn-synapse/config/tailwind.synapse-preset.js';
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -238,6 +252,53 @@ export function AnalyticsDashboard({ isLoading, data }) {
 
 ---
 
+## 🧩 7. v2.0 Hybrid Motion Primitives & Enterprise Recipes
+
+### Motion Primitives Suite (`framer-motion` Peer)
+
+| Primitive | Purpose | Built-in Safety Invariant |
+| :--- | :--- | :--- |
+| `TextScramble` | Progressive character reveal for boot screens / status headers | Use module-level session flag (e.g. `hasBootAnimated`) so repeat visits stay instant |
+| `TransitionPanel` | Multi-step / 3-Panel Auth / wizard switcher (`AnimatePresence mode="popLayout"`) | Wrap container with `overflow-hidden` to block mobile horizontal bleed |
+| `AnimatedGroup` | Staggered entrance (`fade`, `slide`, `scale`, `blur-slide`) | Avoid `filter: blur(...)` on `<tr>` table elements (use `SynapseStagger as="tr"`) |
+| `Disclosure` | Smooth collapsible validation errors & inline alerts (`height: 0 <-> auto`) | Keeps zero CLS without layout snap |
+| `TextMorph` | Character-by-character morphing labels inside action buttons | Wrap/apply stable `aria-label` so screen readers and Vitest `getByRole` stay deterministic |
+| `AnimatedNumber` | Spring-interpolated numeric counters (`tabular-nums`) | Ideal for KPI cards & live financial balances |
+
+### Battle-Tested Production Recipes (Lessons Learned)
+
+1. **Autofill-Immune Input Icons (`z-10` Layering):**
+   Chrome/Edge `:-webkit-autofill` paints its fill overlay above `z-0`, hiding absolute left/right icons inside `<input>` wrappers. Always add explicit `z-10` to left icon containers and right toggle buttons:
+   ```jsx
+   <div className="relative">
+     <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none z-10">
+       <Lock className="h-4 w-4 text-slate-400" />
+     </div>
+     <input type="password" className="w-full pl-10 pr-10 ..." />
+     <button type="button" className="absolute inset-y-0 right-0 pr-3.5 z-10" aria-label="Toggle visibility">
+       <Eye className="h-4 w-4" />
+     </button>
+   </div>
+   ```
+
+2. **3-Panel Auth Choreography (`TextScramble` + `TransitionPanel` + Morphing Dialog):**
+   Combine `TransitionPanel` for `boot -> auth -> welcome`, `Disclosure` for validation feedback, `TextMorph` on the submit button, and a `createPortal(..., document.body)` dialog with `Escape` key handler + body scroll lock for secondary help modals.
+
+3. **Reduced Motion Without Global `* { 0.01ms !important }` or Webview `0.01s` Modal Cutoffs:**
+   Never inject `* { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }` inside `@media (prefers-reduced-motion: reduce)`, and avoid `useReducedMotion()` `0.01s` cutoffs or CSS keyframe modal shells (`usePresence` + `.animate-pop-in`) on primary modals & popovers — desktop webviews often report `reduce` and will silently kill modal transitions. Let `SynapseModal` (`<AnimatePresence onExitComplete>` persistent portal) deliver consistent spring motion.
+4. **Sibling Multi-Layer Portals, Layer-Aware `Escape`, & Zero Frame-0 Stall:**
+   Keep `nested` (`z-[150]`), `lightbox` (`z-[200]`), and `lightbox-dialog` (`z-[210]`) portals as **siblings** outside `<SynapseModal tier="primary">`, release ref-counted `useBodyScrollLock` only in `onExitComplete`, defer heavy form or read-only tab state resets (`bankAudit`, `modalItem`) until after modal exit (`~260ms`), and memoize large combobox option lists.
+5. **Dual `<TableSkeleton />` Outside `<table>`, Burn-Down HUD, Recharts Mobile `YAxis`, & Bottom-Sheet Safe Area (`06-tracking-evendor`):**
+   Never render `<div>`-based `<TableSkeleton />` inside `<tbody>` — place `<TableSkeleton rows={5} />` (`hidden md:block`) and `<TableSkeleton rows={3} mobile />` (`block md:hidden`) cleanly outside `<table>`. In collapsible `<Disclosure>` HUD hubs, expose a compact mobile summary strip (`< md`) when collapsed, prevent large-currency truncation with `grid-cols-1 min-[440px]:grid-cols-2`, tighten mobile dual `YAxis` widths (`38px`/`34px` via `matchMedia`), use `pb-[max(0.875rem,env(safe-area-inset-bottom))]` on `mobileSheet` footers, and bound scrollable `<pre>` JSON panels (`max-h-[44vh]`).
+6. **Multi-Workspace Governance RBAC, Snapshot Secret Redaction, & iOS Safari Anti-Auto-Zoom (`07-tata-kelola`):**
+   Lock admin sub-ribbon visibility cleanly via role guards + `403` fallback cards, redact sensitive JSON audit diff keys (`password`, `token`, `secret`, `pin`, `nik`) to `"[REDACTED]"`, use `text-base sm:text-xs` on interactive `<input>`/`<select>` filter/search bars to block iOS Safari auto-zoom, split 4-item preset grids (`grid-cols-2 sm:grid-cols-4 gap-2`), and ensure `<Info />` / modal close buttons maintain `min-h-[44px] min-w-[44px]` on mobile touch screens.
+7. **Mobile-First Field Portal `~360px`, Interactive Status `<Disclosure>`, & Lightbox Portal (`08-portal-amt`):**
+   Keep key metrics visible above the fold with a 2×2 mobile KPI grid (`grid-cols-2`), bind timezone-safe selectors with iOS anti-zoom `text-base sm:text-xs`, replace hover-only info tooltips with clickable `<Disclosure>` panels (`min-h-[44px]` trigger), render document previews via `<SynapseModal tier="lightbox" mobileSheet={false}>` with 260ms deferred state cleanup, and separate desktop vs bottom-thumb `layoutId` spring pills.
+8. **Paired `<input type="date">` Grid `min-w-0`, Tooltip Clamp `~360px`, & Floating Dock Resize Clamp (`04-pengiriman-operasional`):**
+   When placing two `<input type="date" className="text-base sm:text-xs ...">` fields inside `grid-cols-[1fr_auto_1fr]` or `flex-1` containers, always attach `min-w-0` to both the grid/flex wrappers and `<input type="date">` elements so browser intrinsic picker widths do not force horizontal overflow beyond `360px`. Clamp custom Recharts `<Tooltip>` panels with `allowEscapeViewBox={{ x: false, y: true }}`, `max-w-[200px] sm:max-w-xs whitespace-normal break-words`, and `wrapperStyle={{ maxWidth: 'calc(100vw - 2.5rem)', zIndex: 30 }}`. For draggable/modeless floating docks, share one `clampModalPosition` helper between pointer drag and a `window.resize` listener attached while `isOpen === true`.
+
+---
+
 ## ⏱️ Mathematical Timing & Invariants
 
 | Token Identifiers | Duration | Easing Curve | Target Visual Scenario |
@@ -257,25 +318,53 @@ export function AnalyticsDashboard({ isLoading, data }) {
 
 ```text
 synapse-motion/
-├── LICENSE                         # MIT License
-├── package.json                    # Metadata & Peer Dependencies
-├── README.md                       # Documentation & Quickstart
+├── LICENSE                              # MIT License
+├── PRESET_AUTHORING_GUIDE.md            # Standard template for adding audited pages via `/learn`
+├── README.md                            # Architecture overview, Quickstart & Page Preset Index
+├── package.json                         # v2.2.1 Metadata & Optional framer-motion Peer
+├── pages/                               # Verified human+AI reference page blueprints
+│   ├── 01-login-auth.md                 # Auth / Login 3-Panel Choreography recipe
+│   ├── 02-dashboard-kpi.md              # Dashboard KPI Bento & Mobile ~360px recipe
+│   ├── 03-master-data.md                # Master Data CRUD Hub & Stacked Portals recipe
+│   ├── 04-pengiriman-operasional.md     # Dispatch Persistent Modal, Date Grid & Popover Spring recipe
+│   ├── 05-keuangan-tagihan.md           # Billing Generator, Reconciliation, Archive & Print Lightbox recipe
+│   ├── 06-tracking-evendor.md           # Tracking Status, Burn-Down HUD & Clearing Audit recipe
+│   ├── 07-tata-kelola.md                # Governance Multi-Workspace, RBAC & Config recipe
+│   └── 08-portal-amt.md                 # Mobile-First Field Portal ~360px & Lightbox recipe
 └── src/
-    ├── index.js                    # Barrel export entry point
-    ├── config/
-    │   └── tailwind.synapse-preset.js # Tailwind CSS preset (keyframes & tokens)
-    ├── hooks/
-    │   ├── usePresence.js          # Unmount presence engine (0 KB)
-    │   └── useTimedNavigate.js     # Anti-flicker route handoff (+20ms buffer)
-    └── components/
-        ├── SynapseStagger.jsx      # Cascade waterfall container
-        ├── SynapseModal.jsx        # Accessible portal dialog
-        ├── SynapseDissolve.jsx     # Soft-rise view switcher
-        └── skeletons/              # Atomic 1:1 skeleton primitives
-            ├── KpiSkeleton.jsx
-            ├── ChartSkeleton.jsx
-            ├── TableSkeleton.jsx
-            └── CardSkeleton.jsx
+    ├── index.js                         # Unified barrel export (all 3 layers)
+    ├── shadcn-synapse/                  # Tier 1: Zero-dependency CSS + Shadcn-style UI
+    │   ├── config/
+    │   │   └── tailwind.synapse-preset.js
+    │   ├── hooks/
+    │   │   ├── usePresence.js           # Lightweight non-modal unmount engine (0 KB)
+    │   │   ├── useTimedNavigate.js      # Anti-flicker route handoff (+20ms/+30ms buffer)
+    │   │   └── useBodyScrollLock.js     # Ref-counted multi-layer scroll lock (classList)
+    │   └── skeletons/                   # Atomic 1:1 skeleton primitives
+    │       ├── KpiSkeleton.jsx
+    │       ├── ChartSkeleton.jsx
+    │       ├── TableSkeleton.jsx        # Supports `mobile` card-stream mode
+    │       └── CardSkeleton.jsx
+    ├── motion-primitives/               # Tier 2: Framer Motion Physics, Modals & Choreography
+    │   ├── AnimatedGroup.jsx
+    │   ├── AnimatedNumber.jsx           # Spring counter (`tabular-nums`, optional `formatValue`)
+    │   ├── Disclosure.jsx
+    │   ├── SynapseDissolve.jsx
+    │   ├── SynapseModal.jsx             # Persistent AnimatePresence 4-tier portal + mobileSheet + Esc guard
+    │   ├── SynapseStagger.jsx           # Table-safe (`as="tr"` omits filter blur)
+    │   ├── TextMorph.jsx
+    │   ├── TextScramble.jsx
+    │   └── TransitionPanel.jsx
+    └── presets/                         # Tier 3: Exportable verified page config tokens
+        ├── index.js
+        ├── loginAuth.preset.js
+        ├── dashboardKpi.preset.js
+        ├── masterData.preset.js
+        ├── pengirimanOperasional.preset.js
+        ├── keuanganTagihan.preset.js
+        ├── trackingEvendor.preset.js
+        ├── tataKelola.preset.js
+        └── portalAmt.preset.js
 ```
 
 ---

@@ -6,10 +6,10 @@ import { useState, useEffect } from 'react';
  * Allows elements to stay in the DOM while their exit CSS animation finishes.
  *
  * @param {boolean} isOpen - Current desired visibility state.
- * @param {number} exitDurationMs - Duration to wait for CSS exit animation before unmounting (default: 200ms).
+ * @param {number} exitDurationMs - Duration to wait for CSS exit animation before unmounting (default: 260ms).
  * @returns {{ shouldRender: boolean, isClosing: boolean }}
  */
-export function usePresence(isOpen, exitDurationMs = 200) {
+export function usePresence(isOpen, exitDurationMs = 260) {
   const [shouldRender, setShouldRender] = useState(isOpen);
   const [isClosing, setIsClosing] = useState(false);
 
